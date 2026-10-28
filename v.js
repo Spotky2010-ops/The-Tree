@@ -87,7 +87,7 @@ function layerUnl(layer) {
 }
 
 function buyRoborockUpgrade(id) {
-  if (!window.player.r) return;
+  if (!window.player || !window.player.r) return;
   if (!LAYER_UPGS.r || !LAYER_UPGS.r[id]) return;
   const cost = LAYER_UPGS.r[id].cost();
   if (window.player.r.points < cost) return;
@@ -97,7 +97,7 @@ function buyRoborockUpgrade(id) {
 }
 
 function buyRoborockBuyable(id) {
-  if (!window.player.r) return;
+  if (!window.player || !window.player.r) return;
   const buyable = (LAYER_BUYABLES.r || [])[id];
   if (!buyable) return;
   const owned = window.player.r.buyables[id] || 0;
@@ -108,7 +108,7 @@ function buyRoborockBuyable(id) {
 }
 
 function buyPhotoUpgrade(id) {
-  if (!window.player.r) return;
+  if (!window.player || !window.player.r) return;
   const photo = (PHOTO_UPGRADES.r || [])[id];
   if (!photo) return;
   if (window.player.r.photo[id]) return;
@@ -124,38 +124,38 @@ function load() {
 }
 
 function loadVue() {
-	app = new Vue({
-	  el: "#app",
-	  data: {
-		  player,
-		  format,
-		  formatWhole,
-		  getResetGain,
-		  getLayerReq,
-		  getNextAt,
-		  layerUnl,
-		  getLayerEffDesc,
-		  doReset,
-		  buyUpg,
-		  getGenPowerEff,
-		  getEnhancerCost,
-		  getEnhancerEff,
-		  getEnhancerEff2,
-		  getTimeEnergyEff,
-		  getExtCapsuleCost,
-		  getSpace,
-		  getSpaceBuildingCost,
-		  getSpaceBuildingEffDesc,
-		  buyBuilding,
-		  LAYERS,
-		  LAYER_RES,
-		  LAYER_TYPE,
-		  LAYER_UPGS,
-		  LAYER_BUYABLES,
-		  PHOTO_UPGRADES,
-		  buyRoborockUpgrade,
-		  buyRoborockBuyable,
-		  buyPhotoUpgrade,
-	  },
-	})
+  app = new Vue({
+    el: "#app",
+    data: {
+      player: window.player,
+      format,
+      formatWhole,
+      getResetGain,
+      getLayerReq,
+      getNextAt,
+      layerUnl,
+      getLayerEffDesc,
+      doReset,
+      buyUpg,
+      getGenPowerEff,
+      getEnhancerCost,
+      getEnhancerEff,
+      getEnhancerEff2,
+      getTimeEnergyEff,
+      getExtCapsuleCost,
+      getSpace,
+      getSpaceBuildingCost,
+      getSpaceBuildingEffDesc,
+      buyBuilding,
+      LAYERS,
+      LAYER_RES,
+      LAYER_TYPE,
+      LAYER_UPGS,
+      LAYER_BUYABLES,
+      PHOTO_UPGRADES,
+      buyRoborockUpgrade,
+      buyRoborockBuyable,
+      buyPhotoUpgrade,
+    },
+  });
 }
